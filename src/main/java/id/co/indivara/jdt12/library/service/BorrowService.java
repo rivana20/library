@@ -53,6 +53,7 @@ public class BorrowService {
         bookRepository.save(book);
         Date currentDate = new Date();
         borrow.setCheckIn(currentDate);
+        //ini update
         return borrowRepository.save(borrow);
     }
 }

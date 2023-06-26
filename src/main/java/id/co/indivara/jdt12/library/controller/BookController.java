@@ -27,13 +27,13 @@ public class BookController {
     }
 
     @GetMapping("/book/{bookId}")
-    Book findBookById(@PathVariable("bookId")Long bookId){
-        return bookService.findBookById(bookId).getBody();
+    Book findBookById(@PathVariable("bookId")Long id){
+        return bookService.findBookById(id).getBody();
     }
 
-    @DeleteMapping("/books/{bookId}")
-    HttpStatus deleteBook(@PathVariable("bookId") Long bookId){
-        return bookService.deleteBook(bookId).getBody();
+    @DeleteMapping("/book/{bookId}")
+    HttpStatus deleteBook(@PathVariable("bookId") Long id){
+        return bookService.deleteBook(id).getBody();
     }
     @PutMapping("/book/{id}")
     Book updateBook(@PathVariable Long id, @RequestBody Book book){
