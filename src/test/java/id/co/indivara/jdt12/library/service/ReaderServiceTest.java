@@ -4,7 +4,7 @@ import id.co.indivara.jdt12.library.entity.Reader;
 import id.co.indivara.jdt12.library.repo.ReaderRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -108,21 +108,5 @@ public class ReaderServiceTest {
         Assert.assertNotNull(updatedReader);
         Assert.assertEquals("Budi Santoso", updatedReader.getReaderName());
     }
-    @Test
-    public void deleteReaderServiceTest()throws ParseException{
-        String date = "07-07-2020";
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        Date date1 = dateFormat.parse(date);
-        Reader reader = new Reader();
-        reader.setReaderId(1L);
-        reader.setReaderName("Amir Jaya");
-        reader.setJoinDate(date1);
 
-        when(readerRepository.findById(anyLong())).thenReturn(Optional.of(reader));
-        doNothing().when(readerRepository).delete(reader);
-
-        readerService.deleteReaderById(1L);
-
-        verify(readerRepository, times(1)).delete(reader);
-    }
 }

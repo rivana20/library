@@ -4,7 +4,7 @@ import id.co.indivara.jdt12.library.entity.Book;
 import id.co.indivara.jdt12.library.repo.BookRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -34,7 +34,6 @@ public class BookServiceTest {
     @Test
     public void createBookServiceTest(){
         Book book = new Book();
-        book.setBookId(1L);
         book.setBookName("Twilight");
         book.setAuthor("Stephanie");
         book.setPublisher("Gramedia");
@@ -101,20 +100,4 @@ public class BookServiceTest {
         Assert.assertNotNull(updatedBook);
         Assert.assertEquals("Meyer", updatedBook.getAuthor());
     }
-//    @Test
-//    public void deleteBookServiceTest(){
-//        Book book = new Book();
-//        book.setBookId(1L);
-//        book.setBookName("Twilight");
-//        book.setAuthor("Stephanie");
-//        book.setPublisher("Gramedia");
-//        book.setStock(5);
-//
-//        when(bookRepository.findById(anyLong())).thenReturn(Optional.of(book));
-//        doNothing().when(bookRepository).deleteById(anyLong());
-//
-//        bookService.deleteBook(1L);
-//
-//        verify(bookRepository, times(1)).deleteById(anyLong());
-//    }
 }
