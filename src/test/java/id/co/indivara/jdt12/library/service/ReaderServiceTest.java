@@ -108,5 +108,21 @@ public class ReaderServiceTest {
         Assert.assertNotNull(updatedReader);
         Assert.assertEquals("Budi Santoso", updatedReader.getReaderName());
     }
+    @Test
+    public void deleteReaderServiceTest()throws ParseException{
+        String date = "07-07-2020";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Date date1 = dateFormat.parse(date);
+        Reader reader = new Reader();
+        reader.setReaderId(1L);
+        reader.setReaderName("Amir Jaya");
+        reader.setJoinDate(date1);
 
+        when(readerRepository.findById(anyLong())).thenReturn(Optional.of(reader));
+        doNothing().when(readerRepository).deleteById(anyLong());
+
+        readerService.deleteReaderById(1L);
+
+        verify(readerRepository, times(1)).deleteById(anyLong());
+    }
 }

@@ -100,4 +100,20 @@ public class BookServiceTest {
         Assert.assertNotNull(updatedBook);
         Assert.assertEquals("Meyer", updatedBook.getAuthor());
     }
+        @Test
+    public void deleteBookServiceTest(){
+        Book book = new Book();
+        book.setBookId(1L);
+        book.setBookName("Twilight");
+        book.setAuthor("Stephanie");
+        book.setPublisher("Gramedia");
+        book.setStock(5);
+
+        when(bookRepository.findById(anyLong())).thenReturn(Optional.of(book));
+        doNothing().when(bookRepository).deleteById(anyLong());
+
+        bookService.deleteBook(1L);
+
+        verify(bookRepository, times(1)).deleteById(anyLong());
+    }
 }
